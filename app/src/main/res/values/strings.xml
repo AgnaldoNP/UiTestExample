@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Sample Movies - UI Test</string>
+    <string name="title_wait">Aguarde …</string>
+</resources>
