@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -40,7 +41,21 @@ abstract class BaseActivity<T : ViewBinding, V : BaseViewModel> :
     }
 
     open fun initViewModel(savedInstanceState: Bundle?) {}
-    open fun initUI(viewBinding: T) {}
+    open fun initUI(viewBinding: T, hasBackNavigation: Boolean = true) {
+        (findViewById<View>(R.id.toolbar) as? Toolbar)?.let {
+            setSupportActionBar(it)
+            if (hasBackNavigation) {
+                supportActionBar?.run {
+                    setDisplayHomeAsUpEnabled(true)
+                    setHomeAsUpIndicator(R.drawable.ic_back_navigation)
+                    it.setNavigationOnClickListener { onTabNavigationClick() }
+                }
+            }
+        }
+    }
+
+    private fun onTabNavigationClick() {}
+
     open fun initObservers(lifecycleOwner: LifecycleOwner, viewBinding: T) {}
 
     override fun onDestinationChanged(
