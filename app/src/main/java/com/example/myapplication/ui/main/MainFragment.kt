@@ -3,7 +3,9 @@ package com.example.myapplication.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentMainBinding
+import com.example.myapplication.domain.entity.Movie
 import com.example.myapplication.ui.base.BaseFragment
 import com.example.myapplication.ui.main.adapter.TabAdapterMoviesFragment
 import com.example.myapplication.ui.main.adapter.TabViewPagerMoviesAdapter
@@ -41,7 +43,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
                 viewLifecycleOwner.lifecycle,
                 groups.map { group ->
                     val (type, movies) = group
-                    TabAdapterMoviesFragment(type, movies)
+                    TabAdapterMoviesFragment(type, movies).apply {
+                        this.onMovieSelected { onMovieSelected(it) }
+                    }
                 }
             )
             viewBinding.viewPagerType.adapter = tabAdapter
@@ -49,5 +53,11 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
                 tab.text = tabAdapter.getTabTitle(position)
             }.attach()
         }
+    }
+
+    private fun onMovieSelected(movie: Movie) {
+        findNavController().navigate(
+            MainFragmentDirections.navigateToMovieFragment(movie)
+        )
     }
 }

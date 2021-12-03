@@ -19,13 +19,14 @@ class TabAdapterMoviesFragment(
     override fun getViewBiding(view: View) = FragmentMoviesBinding.bind(view)
 
     private lateinit var moviesAdapter: MoviesAdapter
+    private var onMovieSelectListener: ((Movie) -> Unit)? = null
 
     fun getTabTitle(): String = type
 
     override fun initUI(viewBinding: FragmentMoviesBinding) {
         super.initUI(viewBinding)
         moviesAdapter = MoviesAdapter().apply {
-            setOnItemClickListener { }
+            setOnItemClickListener { onMovieSelectListener?.invoke(it) }
         }
         viewBinding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
@@ -36,5 +37,9 @@ class TabAdapterMoviesFragment(
                 moviesAdapter.submitList(movies)
             }
         }
+    }
+
+    fun onMovieSelected(onMovieSelectListener: (Movie) -> Unit) {
+        this.onMovieSelectListener = onMovieSelectListener
     }
 }

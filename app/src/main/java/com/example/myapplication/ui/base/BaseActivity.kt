@@ -48,13 +48,11 @@ abstract class BaseActivity<T : ViewBinding, V : BaseViewModel> :
                 supportActionBar?.run {
                     setDisplayHomeAsUpEnabled(true)
                     setHomeAsUpIndicator(R.drawable.ic_back_navigation)
-                    it.setNavigationOnClickListener { onTabNavigationClick() }
+                    it.setNavigationOnClickListener { onBackPressed() }
                 }
             }
         }
     }
-
-    private fun onTabNavigationClick() {}
 
     open fun initObservers(lifecycleOwner: LifecycleOwner, viewBinding: T) {}
 

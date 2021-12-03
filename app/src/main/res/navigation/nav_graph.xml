@@ -11,6 +11,21 @@
         android:label="main_fragment"
         tools:layout="@layout/fragment_main">
 
+        <action
+            android:id="@+id/navigate_to_movie_fragment"
+            app:destination="@id/movie_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/movie_fragment"
+        android:name="com.example.myapplication.ui.movie.MovieFragment"
+        tools:layout="@layout/fragment_movie">
+
+        <argument
+            android:name="movie"
+            app:argType="com.example.myapplication.domain.entity.Movie" />
+
     </fragment>
 
 </navigation>
