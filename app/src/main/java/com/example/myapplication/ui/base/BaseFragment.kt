@@ -72,4 +72,6 @@ abstract class BaseFragment<T : ViewBinding, V : BaseViewModel> : Fragment() {
             progressDialog?.show()
         }
     }
+
+    protected fun requireBaseActivity() = requireActivity() as BaseActivity<*, *>
 }

@@ -3,6 +3,7 @@ package com.example.myapplication.ui.base
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleOwner
@@ -42,15 +43,10 @@ abstract class BaseActivity<T : ViewBinding, V : BaseViewModel> :
 
     open fun initViewModel(savedInstanceState: Bundle?) {}
     open fun initUI(viewBinding: T, hasBackNavigation: Boolean = true) {
-        (findViewById<View>(R.id.toolbar) as? Toolbar)?.let {
-            setSupportActionBar(it)
-            if (hasBackNavigation) {
-                supportActionBar?.run {
-                    setDisplayHomeAsUpEnabled(true)
-                    setHomeAsUpIndicator(R.drawable.ic_back_navigation)
-                    it.setNavigationOnClickListener { onBackPressed() }
-                }
-            }
+        if (hasBackNavigation) {
+            applyToolbarNavigationBack()
+        } else {
+            clearToolbarNavigation()
         }
     }
 
@@ -76,5 +72,29 @@ abstract class BaseActivity<T : ViewBinding, V : BaseViewModel> :
     override fun startActivity(intent: Intent?) {
         super.startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
+    fun applyToolbarNavigationBack() {
+        applyToolbarNavigation(R.drawable.ic_back_navigation) { onBackPressed() }
+    }
+
+    fun applyToolbarNavigation(@DrawableRes icon: Int, action: () -> Unit) {
+        (findViewById<View>(R.id.toolbar) as? Toolbar)?.let {
+            setSupportActionBar(it)
+            supportActionBar?.run {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(icon)
+                it.setNavigationOnClickListener { action.invoke() }
+            }
+        }
+    }
+
+    fun clearToolbarNavigation() {
+        (findViewById<View>(R.id.toolbar) as? Toolbar)?.let {
+            setSupportActionBar(it)
+            supportActionBar?.run {
+                setDisplayHomeAsUpEnabled(false)
+            }
+        }
     }
 }

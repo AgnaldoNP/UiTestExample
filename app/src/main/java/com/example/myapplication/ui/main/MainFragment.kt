@@ -1,12 +1,15 @@
 package com.example.myapplication.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentMainBinding
 import com.example.myapplication.domain.entity.Movie
 import com.example.myapplication.ui.base.BaseFragment
+import com.example.myapplication.ui.login.LoginActivity
 import com.example.myapplication.ui.main.adapter.TabAdapterMoviesFragment
 import com.example.myapplication.ui.main.adapter.TabViewPagerMoviesAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,6 +30,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
     override fun initUI(viewBinding: FragmentMainBinding) {
         super.initUI(viewBinding)
+        requireBaseActivity().applyToolbarNavigation(R.drawable.ic_menu) {
+        }
+
         tabAdapter = TabViewPagerMoviesAdapter(
             childFragmentManager,
             viewLifecycleOwner.lifecycle,
@@ -37,6 +43,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
     override fun initObservers(lifecycleOwner: LifecycleOwner, viewBinding: FragmentMainBinding) {
         super.initObservers(lifecycleOwner, viewBinding)
+        viewModel.redirectToLogin.observe(lifecycleOwner) {
+            with(requireActivity()) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                this.finish()
+            }
+        }
+
         viewModel.moviesLiveEvent.observe(lifecycleOwner) { groups ->
             tabAdapter = TabViewPagerMoviesAdapter(
                 childFragmentManager,

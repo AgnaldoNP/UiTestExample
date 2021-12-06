@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Sample Movies - UI Test</string>
     <string name="title_wait">Aguarde …</string>
+
+    <string name="ok">OK</string>
+
+    <string name="login_validation_no_email">Informe um email válido</string>
+    <string name="login_validation_empty_email">Informe um email</string>
+    <string name="login_validation_empty_password">Digite sua senha</string>
+    <string name="login_request_error">Usuario nao encontrado</string>
 </resources>

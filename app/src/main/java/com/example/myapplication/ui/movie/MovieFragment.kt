@@ -19,8 +19,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding, EmptyViewModel>() {
 
     override fun initUI(viewBinding: FragmentMovieBinding) {
         super.initUI(viewBinding)
-        val movie = args.movie
+        requireBaseActivity().applyToolbarNavigationBack()
 
+        val movie = args.movie
         with(viewBinding) {
             tvTitle.text = movie.title
             tvYear.text = movie.year
