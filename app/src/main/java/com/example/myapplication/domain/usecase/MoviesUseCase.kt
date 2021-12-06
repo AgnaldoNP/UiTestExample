@@ -15,6 +15,8 @@ class MoviesUseCase(
                     map.value.map {
                         Movie(
                             title = it.title,
+                            year = it.year,
+                            genre = it.genre,
                             description = it.description,
                             poster = it.poster,
                             imagesUrl = it.imagesUrl

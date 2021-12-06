@@ -7,6 +7,10 @@ data class MovieApiResponse(
     val type: String,
     @SerializedName("Title")
     val title: String,
+    @SerializedName("Year")
+    val year: String,
+    @SerializedName("Genre")
+    val genre: String,
     @SerializedName("Plot")
     val description: String,
     @SerializedName("Poster")
