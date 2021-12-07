@@ -14,7 +14,10 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        setupInjector()
+    }
 
+    fun setupInjector() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)

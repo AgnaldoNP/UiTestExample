@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.myapplication.test.InstrumentationTest"
 
         buildConfigField("String", "API_URL", "\"https://gist.githubusercontent.com/\"")
     }
@@ -24,6 +24,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            sourceSets {
+                androidTest {
+                    assets.srcDirs = ['src/androidTest/assets']
+                }
+            }
         }
     }
 
@@ -90,4 +98,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'me.relex:circleindicator:2.1.6'
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.2'
+
+    androidTestImplementation "io.cucumber:cucumber-android:4.9.0"
+    androidTestImplementation "androidx.test:rules:1.4.0"
+    androidTestImplementation('com.adevinta.android:barista:4.2.0') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
 }

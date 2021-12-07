@@ -7,5 +7,5 @@
     <string name="login_validation_no_email">Informe um email válido</string>
     <string name="login_validation_empty_email">Informe um email</string>
     <string name="login_validation_empty_password">Digite sua senha</string>
-    <string name="login_request_error">Usuario nao encontrado</string>
+    <string name="login_request_error">Usuário não encontrado</string>
 </resources>

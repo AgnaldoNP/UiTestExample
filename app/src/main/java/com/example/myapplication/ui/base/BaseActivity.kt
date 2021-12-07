@@ -3,7 +3,9 @@ package com.example.myapplication.ui.base
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.DrawableRes
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleOwner
@@ -20,6 +22,7 @@ abstract class BaseActivity<T : ViewBinding, V : BaseViewModel> :
     abstract val viewModel: V
     abstract fun inflateRoot(): View
     abstract fun getViewBiding(view: View): T
+    fun getViewBiding(): T = getViewBiding((findViewById<ViewGroup>(android.R.id.content)).getChildAt(0))
 
     private val navHostFragment by lazy {
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
