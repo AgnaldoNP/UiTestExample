@@ -10,14 +10,14 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 
-class MyApplication : Application() {
+open class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         setupInjector()
     }
 
-    fun setupInjector() {
+    protected fun setupInjector() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)

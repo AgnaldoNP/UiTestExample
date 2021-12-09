@@ -1,10 +1,10 @@
 #language: pt
 
-@login
+@feaure_login
 Funcionalidade: Login
 
   Contexto:
-    Dado Que eu abra a tela login
+    E Que eu abra a tela login
 
   @validate_login_field_errors
   Esquema do Cenario: Validação de erro nos campos de login
@@ -26,7 +26,7 @@ Funcionalidade: Login
     Entao Eu verei a mensagem no popup "Usuário não encontrado"
 
   @validate_login_success
-  Cenario: Validação de erros de login
+  Cenario: Validação de login com sucesso
     Dado Que eu insira o email "email@email.com" e senha "123"
     E Eu clique no botão "Login"
     Entao Eu verei a tela home

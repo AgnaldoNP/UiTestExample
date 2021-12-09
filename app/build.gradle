@@ -104,4 +104,5 @@ dependencies {
     androidTestImplementation('com.adevinta.android:barista:4.2.0') {
         exclude group: 'org.jetbrains.kotlin'
     }
+    androidTestImplementation "io.mockk:mockk-android:1.12.1"
 }

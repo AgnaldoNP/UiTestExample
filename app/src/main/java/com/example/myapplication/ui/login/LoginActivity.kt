@@ -11,6 +11,7 @@ import com.example.myapplication.ui.main.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
+
     override val viewModel: LoginViewModel by viewModel()
     override fun inflateRoot(): View = ActivityLoginBinding.inflate(layoutInflater).root
     override fun getViewBiding(view: View) = ActivityLoginBinding.bind(view)
