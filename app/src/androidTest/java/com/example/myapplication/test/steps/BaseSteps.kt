@@ -3,6 +3,7 @@ package com.example.myapplication.test.steps
 import androidx.test.espresso.matcher.ViewMatchers
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.adevinta.android.barista.interaction.BaristaDialogInteractions
+import com.adevinta.android.barista.interaction.BaristaViewPagerInteractions
 import com.adevinta.android.barista.internal.assertAny
 import com.example.myapplication.test.di.DiTestManager
 import com.example.myapplication.test.util.ActivityFinisher
@@ -49,8 +50,22 @@ class BaseSteps {
     @And("^Eu (?:vejo|verei) a mensagem no popup \"(.*)\"$")
     fun checkErrorOnScreen(message: String) {
         runAssert {
-            runAssert { assertDisplayed(message) }
+            assertDisplayed(message)
             BaristaDialogInteractions.clickDialogPositiveButton()
+        }
+    }
+
+    @And("^Eu farei o swipe para a esquerda$")
+    fun swipeLeft() {
+        runAssert {
+            BaristaViewPagerInteractions.swipeViewPagerForward()
+        }
+    }
+
+    @And("^Eu farei o swipe para a direita$")
+    fun swipeRight() {
+        runAssert {
+            BaristaViewPagerInteractions.swipeViewPagerBack()
         }
     }
 }

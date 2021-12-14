@@ -26,6 +26,17 @@ class DiTestManager {
         loadKoinModules(moduleWithMocks)
     }
 
+    fun setupKoinMockForHomeLoggedInTest() {
+        val mockUserUseCase = mockk<UserUseCase> {
+            every { isUserLogged() }.returns(true)
+        }
+
+        moduleWithMocks = module {
+            single(override = true) { mockUserUseCase }
+        }
+        loadKoinModules(moduleWithMocks)
+    }
+
     fun clearMocks() {
         if (::moduleWithMocks.isInitialized) {
             unloadKoinModules(moduleWithMocks)

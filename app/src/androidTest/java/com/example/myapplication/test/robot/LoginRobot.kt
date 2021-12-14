@@ -15,10 +15,14 @@ class LoginRobot : BaseRobot<LoginActivity, ActivityLoginBinding>() {
 
     fun insertLoginData(email: String, password: String) {
         getActivityViewBinding {
-            it?.apply {
+            it.apply {
                 etEmail.setText(email)
                 etPassword.setText(password)
             }
         }
+    }
+
+    fun assertLoginActivityIsOpened() {
+        assertActivityIsOpened<LoginActivity>()
     }
 }

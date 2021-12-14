@@ -9,7 +9,7 @@ import java.io.File
 
 @CucumberOptions(
     glue = ["com.example.myapplication.test.steps"],
-    tags = ["~@skip"],
+    tags = ["@feature_home_logged_in"],
     features = ["features"]
 )
 class InstrumentationTest : CucumberAndroidJUnitRunner() {
