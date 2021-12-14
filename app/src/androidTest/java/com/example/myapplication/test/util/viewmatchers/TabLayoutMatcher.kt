@@ -5,7 +5,7 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import com.google.android.material.tabs.TabLayout
 import org.hamcrest.Description
 
-class TabLayoutMatcher(private val text: String) :
+open class TabLayoutMatcher(private val text: String) :
     BoundedMatcher<View, TabLayout>(TabLayout::class.java) {
 
     override fun describeTo(description: Description?) {

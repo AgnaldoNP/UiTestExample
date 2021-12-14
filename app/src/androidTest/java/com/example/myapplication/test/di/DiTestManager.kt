@@ -1,8 +1,11 @@
 package com.example.myapplication.test.di
 
 import androidx.test.core.app.ApplicationProvider
+import com.example.myapplication.data.source.remote.api.MoviesApi
 import com.example.myapplication.domain.usecase.UserUseCase
 import com.example.myapplication.test.MyApplicationTest
+import com.example.myapplication.test.datafactory.mockOnlyMovies
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import org.koin.core.context.loadKoinModules
@@ -47,5 +50,21 @@ class DiTestManager {
             setupApplicationDependencies()
             setupTestDependencies()
         }
+    }
+
+    fun setupKoinMockForOnlyMovies() {
+        val mockUserUseCase = mockk<UserUseCase> {
+            every { isUserLogged() }.returns(true)
+        }
+
+        val mockMoviesApi = mockk<MoviesApi> {
+            coEvery { search() }.coAnswers { mockOnlyMovies() }
+        }
+
+        moduleWithMocks = module {
+            single(override = true) { mockUserUseCase }
+            factory(override = true) { mockMoviesApi }
+        }
+        loadKoinModules(moduleWithMocks)
     }
 }

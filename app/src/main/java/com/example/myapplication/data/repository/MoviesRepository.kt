@@ -6,6 +6,5 @@ import com.example.myapplication.data.source.remote.entity.MovieApiResponse
 class MoviesRepository(
     private val moviesApi: MoviesApi
 ) {
-    suspend fun search(): List<MovieApiResponse> =
-        moviesApi.search()
+    suspend fun search(): List<MovieApiResponse> = moviesApi.search()
 }

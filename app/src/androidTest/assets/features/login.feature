@@ -4,7 +4,7 @@
 Funcionalidade: Login
 
   Contexto:
-    E Que eu abra a tela login
+    Dado Que eu abra a tela login
 
   @validate_login_field_errors
   Esquema do Cenario: Validação de erro nos campos de login

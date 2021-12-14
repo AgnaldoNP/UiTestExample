@@ -3,28 +3,38 @@ package com.example.myapplication.test
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import io.cucumber.android.runner.CucumberAndroidJUnitRunner
 import io.cucumber.junit.CucumberOptions
 import java.io.File
 
 @CucumberOptions(
     glue = ["com.example.myapplication.test.steps"],
-    tags = ["@feature_home_logged_in"],
+    tags = ["~@skip"],
     features = ["features"]
 )
 class InstrumentationTest : CucumberAndroidJUnitRunner() {
 
     override fun onCreate(bundle: Bundle?) {
         bundle?.putString("plugin", getPluginConfigurationString())
-        File(getAbsoluteFilesPath()).mkdirs()
+        File(getAbsoluteFilesPath()).let {
+            it.mkdirs()
+            Log.d("ANP", it.absolutePath)
+        }
         super.onCreate(bundle)
     }
 
     private fun getPluginConfigurationString(): String? {
         val cucumber = "cucumber"
         val separator = "--"
-        return "junit:" + getCucumberXml(cucumber) + separator +
-            "html:" + getCucumberHtml(cucumber)
+        return "pretty" + separator +
+            "junit:" + getCucumberXml(cucumber) + separator +
+            "html:" + getCucumberHtml(cucumber) + separator +
+            "json:" + getCucumberJson(cucumber)
+    }
+
+    private fun getCucumberJson(cucumber: String): String {
+        return getAbsoluteFilesPath() + "/" + cucumber + ".json"
     }
 
     private fun getCucumberHtml(cucumber: String): String {

@@ -28,4 +28,9 @@ class MainSteps {
             launchMainActivity()
         }
     }
+
+    @Then("^Que eu abra a tela home$")
+    fun openMainActivity() {
+        homeRobot.apply { launchMainActivity() }
+    }
 }
