@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner "com.example.myapplication.test.InstrumentationTest"
 
-        buildConfigField("String", "API_URL", "\"https://gist.githubusercontent.com/\"")
+        buildConfigField("String", "API_URL", "\"https://raw.githubusercontent.com/\"")
     }
 
     buildTypes {
