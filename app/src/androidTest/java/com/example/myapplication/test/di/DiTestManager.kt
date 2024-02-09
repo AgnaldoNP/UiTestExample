@@ -24,7 +24,7 @@ class DiTestManager {
         }
 
         moduleWithMocks = module {
-            single(override = true) { mockUserUseCase }
+            single { mockUserUseCase }
         }
         loadKoinModules(moduleWithMocks)
     }
@@ -35,7 +35,7 @@ class DiTestManager {
         }
 
         moduleWithMocks = module {
-            single(override = true) { mockUserUseCase }
+            single { mockUserUseCase }
         }
         loadKoinModules(moduleWithMocks)
     }
@@ -62,8 +62,8 @@ class DiTestManager {
         }
 
         moduleWithMocks = module {
-            single(override = true) { mockUserUseCase }
-            factory(override = true) { mockMoviesApi }
+            single { mockUserUseCase }
+            factory { mockMoviesApi }
         }
         loadKoinModules(moduleWithMocks)
     }

@@ -16,3 +16,12 @@ local.properties
 .idea/vcs.xml
 .idea/misc.xml
 .idea/deploymentTargetDropDown.xml
+.idea/ktlint-plugin.xml
+.idea/*
+.idea/*.*
+.idea/*/*/*/*
+.idea/*/*/*
+.idea/*/*
+.idea/*
+.idea/**
+.idea

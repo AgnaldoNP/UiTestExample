@@ -5,9 +5,10 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.2.0-alpha01'
-        id 'com.android.library' version '7.2.0-alpha01'
-        id 'org.jetbrains.kotlin.android' version '1.5.30'
+        id("com.android.application") version "8.2.2"
+        id("com.android.library") version "8.2.2"
+        id("org.jetbrains.kotlin.android") version "1.9.22"
+        id("androidx.navigation.safeargs")
     }
 }
 dependencyResolutionManagement {
@@ -18,4 +19,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Sample Movies - UI Test"
-include ':app'
+include(":app")
